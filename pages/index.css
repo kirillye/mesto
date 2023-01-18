@@ -5,8 +5,6 @@
 @import url(../vendor/fonts/inter.css);
 
 /* body */
-@import url(../blocks/body/_theme/_dark/body_theme_dark.css);
-@import url(../blocks/body/_blocked/body_blocked.css);
 @import url(../blocks/body/body.css);
 
 /* logo */
@@ -26,16 +24,20 @@
 
 /* header */
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__name-row/header__name-row.css);
-@import url(../blocks/header/__box/header__box.css);
 @import url(../blocks/header/__up/header__up.css);
-@import url(../blocks/header/__cross/header__cross.css);
-@import url(../blocks/header/__person/header__person.css);
-@import url(../blocks/header/__add-article/header__add-article.css);
-@import url(../blocks/header/__person-info/header__person-info.css);
-@import url(../blocks/header/__sub-title/header__sub-title.css);
-@import url(../blocks/header/__title/header__title.css);
-@import url(../blocks/header/__btn-edit/header__btn-edit.css);
+
+/* person */
+@import url(../blocks/person/__add-article/person__add-article.css);
+@import url(../blocks/person/__box/person__box.css);
+@import url(../blocks/person/__btn-edit/person__btn-edit.css);
+@import url(../blocks/person/__cross/person__cross.css);
+@import url(../blocks/person/__info/person__info.css);
+@import url(../blocks/person/__name-row/person__name-row.css);
+@import url(../blocks/person/__sub-title/person__sub-title.css);
+@import url(../blocks/person/__title/person__title.css);
+@import url(../blocks/person/__wrapper/person__wrapper.css);
+@import url(../blocks/person/__avatar/person__avatar.css);
+@import url(../blocks/person/person.css);
 
 /* articles */
 @import url(../blocks/articles/__icon-like/articles__icon-like.css);

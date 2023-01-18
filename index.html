@@ -4,31 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body class="body_theme_dark body">
-    <header class="header container">
+  <body class="body">
+    <header class="header">
       <div class="header__up">
         <a href="#"><img src="./img/logo.svg" alt="Логотип" class="logo" /></a>
       </div>
-      <div class="header__person">
-        <div class="header__person-info">
-          <img src="./img/Avatar.png" alt="Аватар пользователя" />
-          <ul class="header__box">
-            <li class="header__name-row">
-              <h1 class="header__title">Жак-Ив Кусто</h1>
-              <button class="header__btn-edit"></button>
-            </li>
-            <li><h2 class="header__sub-title">Исследователь океана</h2></li>
-          </ul>
-        </div>
-        <div class="header__add-article">
-          <!-- <div class="header__cross"></div> -->
-        </div>
-      </div>
     </header>
     <main>
+      <section class="person container">
+        <div class="person__wrapper">
+          <div class="person__info">
+            <img
+              src="./img/Avatar.png"
+              alt="Аватар пользователя"
+              class="person__avatar"
+            />
+            <div class="person__box">
+              <div class="person__name-row">
+                <h1 class="person__title">Жак-Ив Кусто</h1>
+                <button type="button" class="person__btn-edit"></button>
+              </div>
+              <h2 class="person__sub-title">Исследователь океана</h2>
+            </div>
+          </div>
+          <button type="button" class="person__add-article"></button>
+        </div>
+      </section>
       <section class="articles container">
         <ul class="articles__grid">
           <li class="articles__item">
@@ -39,11 +43,7 @@
             />
             <div class="articles__item-body">
               <h2 class="articles__title">Карачаевск</h2>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
           <li class="articles__item">
@@ -54,33 +54,21 @@
             />
             <div class="articles__item-body">
               <h3 class="articles__title">Гора Эльбрус</h3>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
           <li class="articles__item">
             <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
             <div class="articles__item-body">
               <h2 class="articles__title">Домбай</h2>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
           <li class="articles__item">
             <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
             <div class="articles__item-body">
               <h2 class="articles__title">Домбай</h2>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
           <li class="articles__item">
@@ -91,11 +79,7 @@
             />
             <div class="articles__item-body">
               <h2 class="articles__title">Гора Эльбрус</h2>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
           <li class="articles__item">
@@ -106,39 +90,37 @@
             />
             <div class="articles__item-body">
               <h3 class="articles__title">Карачаево - Черкесия</h3>
-              <img
-                src="./img/like.svg"
-                alt="Иконка"
-                class="articles__icon-like"
-              />
+              <button type="button" class="articles__icon-like"></button>
             </div>
           </li>
         </ul>
       </section>
       <div class="popup">
         <div class="popup__container">
-          <div class="popup__btn-close"></div>
+          <button type="button" class="popup__btn-close"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" class="popup__form">
+          <form action="#" class="popup__form" name="formUser">
             <input
+              name="userName"
               value="Жак-Ив Кусто"
               type="text"
               class="popup__input popup__input_content_name"
               data-name
             />
             <input
+              name="userJob"
               value="Исследователь океана"
               type="text"
               class="popup__input popup__input_content_job"
               data-prof
             />
-            <button class="popup__btn">Сохранить</button>
+            <button type="submit" class="popup__btn">Сохранить</button>
           </form>
         </div>
       </div>
     </main>
     <footer class="footer container">
-      <h2 class="footer__author">© 2020 Mesto Russia</h2>
+      <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
     <script src="./js/main.js"></script>
   </body>

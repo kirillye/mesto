@@ -1,4 +1,4 @@
-.header__person {
+.person__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,8 +7,14 @@
 }
 
 @media (max-width: 720px) {
-  .header__person {
+  .person__wrapper {
     flex-direction: column;
     gap: 35px;
+  }
+}
+
+@media (max-width: 380px) {
+  .person__wrapper {
+    margin-bottom: 36px;
   }
 }

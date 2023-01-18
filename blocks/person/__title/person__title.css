@@ -1,4 +1,4 @@
-.header__title {
+.person__title {
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
@@ -7,14 +7,13 @@
   position: relative;
   color: #fff;
   text-decoration: none;
-  cursor: default;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 @media (max-width: 380px) {
-  .header__title {
+  .person__title {
     font-size: 27px;
     line-height: 33px;
   }

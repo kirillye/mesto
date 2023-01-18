@@ -1,4 +1,4 @@
-.header__btn-edit {
+.person__btn-edit {
   cursor: pointer;
   background: url("../../../img/pen.svg") center center no-repeat;
   box-sizing: border-box;
@@ -10,6 +10,13 @@
   margin-bottom: 7px;
 }
 
-.header__btn-edit:hover {
+.person__btn-edit:hover {
   opacity: 0.6;
+}
+
+@media (max-width: 380px) {
+  .person__btn-edit {
+    height: 18px;
+    width: 18px;
+  }
 }

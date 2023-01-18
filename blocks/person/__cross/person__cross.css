@@ -1,4 +1,4 @@
-.header__cross {
+.person__cross {
   /* visibility: hidden; */
   /* width: 32px;
   height: 32px;
@@ -6,8 +6,8 @@
   position: relative;
 }
 
-.header__cross:before,
-.header__cross:after {
+.person__cross:before,
+.person__cross:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -16,6 +16,6 @@
   background-color: #fff;
 }
 
-.header__cross:before {
+.person__cross:before {
   transform: rotate(-90deg);
 }
