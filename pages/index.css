@@ -1,0 +1,51 @@
+/* normalize */
+@import url(../vendor/normalize.css);
+
+/* fonts */
+@import url(../vendor/fonts/inter.css);
+
+/* body */
+@import url(../blocks/body/_theme/_dark/body_theme_dark.css);
+@import url(../blocks/body/_blocked/body_blocked.css);
+@import url(../blocks/body/body.css);
+
+/* logo */
+@import url(../blocks/logo/logo.css);
+
+/* container */
+@import url(../blocks/container/container.css);
+
+/* popup */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__btn-close/popup__btn-close.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__btn/popup__btn.css);
+@import url(../blocks/popup/__input/popup__input.css);
+
+/* header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__name-row/header__name-row.css);
+@import url(../blocks/header/__box/header__box.css);
+@import url(../blocks/header/__up/header__up.css);
+@import url(../blocks/header/__cross/header__cross.css);
+@import url(../blocks/header/__person/header__person.css);
+@import url(../blocks/header/__add-article/header__add-article.css);
+@import url(../blocks/header/__person-info/header__person-info.css);
+@import url(../blocks/header/__sub-title/header__sub-title.css);
+@import url(../blocks/header/__title/header__title.css);
+@import url(../blocks/header/__btn-edit/header__btn-edit.css);
+
+/* articles */
+@import url(../blocks/articles/__icon-like/articles__icon-like.css);
+@import url(../blocks/articles/articles.css);
+@import url(../blocks/articles/__grid/articles__grid.css);
+@import url(../blocks/articles/__item/articles__item.css);
+@import url(../blocks/articles/__title/articles__title.css);
+@import url(../blocks/articles/__item-body/articles__item-body.css);
+@import url(../blocks/articles/__image/articles__image.css);
+
+/* footer */
+/* @import url(../blocks/footer); */
+@import url(../blocks/footer/__author/footer__author.css);

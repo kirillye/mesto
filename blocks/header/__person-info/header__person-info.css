@@ -1,0 +1,22 @@
+.header__person-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 720px) {
+  .header__person-info {
+    /* flex-direction: column; */
+    gap: 35px;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 550px) {
+  .header__person-info {
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+  }
+}

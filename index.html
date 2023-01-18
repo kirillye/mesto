@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="body_theme_dark body">
+    <header class="header container">
+      <div class="header__up">
+        <a href="#"><img src="./img/logo.svg" alt="Логотип" class="logo" /></a>
+      </div>
+      <div class="header__person">
+        <div class="header__person-info">
+          <img src="./img/Avatar.png" alt="Аватар пользователя" />
+          <ul class="header__box">
+            <li class="header__name-row">
+              <h1 class="header__title">Жак-Ив Кусто</h1>
+              <button class="header__btn-edit"></button>
+            </li>
+            <li><h2 class="header__sub-title">Исследователь океана</h2></li>
+          </ul>
+        </div>
+        <div class="header__add-article">
+          <!-- <div class="header__cross"></div> -->
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="articles container">
+        <ul class="articles__grid">
+          <li class="articles__item">
+            <img
+              src="./img/karajaevsk.jpg"
+              alt="Город: Карачаевск"
+              class="articles__image"
+            />
+            <div class="articles__item-body">
+              <h2 class="articles__title">Карачаевск</h2>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+          <li class="articles__item">
+            <img
+              src="./img/mount.jpg"
+              alt="Гора Эльбрус"
+              class="articles__image"
+            />
+            <div class="articles__item-body">
+              <h3 class="articles__title">Гора Эльбрус</h3>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+          <li class="articles__item">
+            <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
+            <div class="articles__item-body">
+              <h2 class="articles__title">Домбай</h2>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+          <li class="articles__item">
+            <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
+            <div class="articles__item-body">
+              <h2 class="articles__title">Домбай</h2>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+          <li class="articles__item">
+            <img
+              src="./img/mount.jpg"
+              alt="Гора Эльбрус"
+              class="articles__image"
+            />
+            <div class="articles__item-body">
+              <h2 class="articles__title">Гора Эльбрус</h2>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+          <li class="articles__item">
+            <img
+              src="./img/karajaevsk.jpg"
+              alt="Город: Карачаевск"
+              class="articles__image"
+            />
+            <div class="articles__item-body">
+              <h3 class="articles__title">Карачаево - Черкесия</h3>
+              <img
+                src="./img/like.svg"
+                alt="Иконка"
+                class="articles__icon-like"
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
+      <div class="popup">
+        <div class="popup__container">
+          <div class="popup__btn-close"></div>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form action="#" class="popup__form">
+            <input
+              value="Жак-Ив Кусто"
+              type="text"
+              class="popup__input popup__input_content_name"
+              data-name
+            />
+            <input
+              value="Исследователь океана"
+              type="text"
+              class="popup__input popup__input_content_job"
+              data-prof
+            />
+            <button class="popup__btn">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer class="footer container">
+      <h2 class="footer__author">© 2020 Mesto Russia</h2>
+    </footer>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

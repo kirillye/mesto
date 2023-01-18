@@ -1,0 +1,5 @@
+.header__name-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}

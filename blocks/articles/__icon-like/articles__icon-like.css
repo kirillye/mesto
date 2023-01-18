@@ -1,0 +1,8 @@
+.articles__icon-like {
+  transition: all 0.25s linear;
+  cursor: pointer;
+}
+
+.articles__icon-like:hover {
+  opacity: 0.5;
+}
