@@ -10,8 +10,6 @@ window.addEventListener("load", function () {
 
   function popopToggle() {
     popop.classList.toggle("popup_opend");
-    nameInput.value = personTitle.textContent;
-    jobInput.value = personSubTitle.textContent;
   }
 
   function handleFormSubmit(evt) {
@@ -21,7 +19,12 @@ window.addEventListener("load", function () {
     popopToggle();
   }
 
-  btn.addEventListener("click", popopToggle);
+  btn.addEventListener("click", function () {
+    nameInput.value = personTitle.textContent;
+    jobInput.value = personSubTitle.textContent;
+    popopToggle();
+  });
+
   btnClose.addEventListener("click", popopToggle);
   formElement.addEventListener("submit", handleFormSubmit);
 });
