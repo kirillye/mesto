@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./js/main.js" defer></script>
   </head>
   <body class="body">
     <header class="header">
@@ -34,68 +35,9 @@
         </div>
       </section>
       <section class="articles container">
-        <ul class="articles__grid">
-          <li class="articles__item">
-            <img
-              src="./img/karajaevsk.jpg"
-              alt="Город: Карачаевск"
-              class="articles__image"
-            />
-            <div class="articles__item-body">
-              <h2 class="articles__title">Карачаевск</h2>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-          <li class="articles__item">
-            <img
-              src="./img/mount.jpg"
-              alt="Гора Эльбрус"
-              class="articles__image"
-            />
-            <div class="articles__item-body">
-              <h3 class="articles__title">Гора Эльбрус</h3>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-          <li class="articles__item">
-            <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
-            <div class="articles__item-body">
-              <h2 class="articles__title">Домбай</h2>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-          <li class="articles__item">
-            <img src="./img/dombai.jpg" alt="Домбай" class="articles__image" />
-            <div class="articles__item-body">
-              <h2 class="articles__title">Домбай</h2>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-          <li class="articles__item">
-            <img
-              src="./img/mount.jpg"
-              alt="Гора Эльбрус"
-              class="articles__image"
-            />
-            <div class="articles__item-body">
-              <h2 class="articles__title">Гора Эльбрус</h2>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-          <li class="articles__item">
-            <img
-              src="./img/karajaevsk.jpg"
-              alt="Город: Карачаевск"
-              class="articles__image"
-            />
-            <div class="articles__item-body">
-              <h3 class="articles__title">Карачаево - Черкесия</h3>
-              <button type="button" class="articles__icon-like"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="articles__grid"></ul>
       </section>
-      <div class="popup">
+      <div class="popup" id="popup">
         <div class="popup__container">
           <button type="button" class="popup__btn-close"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -118,10 +60,27 @@
           </form>
         </div>
       </div>
+      <div class="popup-image popup" id="popup-image">
+        <div class="popup-image__container popup__container">
+          <button
+            type="button"
+            class="popup-image__btn-close popup__btn-close"
+          ></button>
+          <img src="" alt="" class="popup-image__img" />
+        </div>
+      </div>
     </main>
     <footer class="footer container">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
-    <script src="./js/main.js"></script>
+    <template id="card-template">
+      <li class="articles__item">
+        <img src="" alt="" class="articles__image" />
+        <div class="articles__item-body">
+          <h2 class="articles__title"></h2>
+          <button type="button" class="articles__icon-like"></button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
