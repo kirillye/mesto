@@ -1,4 +1,4 @@
 .popup_opend {
-  display: flex;
-  /* position: relative; */
+  visibility: visible;
+  opacity: 1;
 }

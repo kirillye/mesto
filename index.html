@@ -47,26 +47,54 @@
               value="Жак-Ив Кусто"
               type="text"
               class="popup__input popup__input_content_name"
-              data-name
             />
             <input
               name="userJob"
               value="Исследователь океана"
               type="text"
               class="popup__input popup__input_content_job"
-              data-prof
             />
             <button type="submit" class="popup__btn">Сохранить</button>
           </form>
         </div>
       </div>
+      <div class="popup" id="popup-article">
+        <div class="popup__container">
+          <button type="button" class="popup__btn-close"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form action="#" class="popup__form" name="formArticle">
+            <input
+              name="article-title"
+              value="Название"
+              type="text"
+              class="popup__input"
+              id="popup__article-title"
+            />
+            <input
+              name="link-image"
+              value="Ссылка на картинку"
+              type="text"
+              class="popup__input"
+              id="popup__article-link-image"
+            />
+            <button type="submit" class="popup__btn" id="popup__btn-article">
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
       <div class="popup-image popup" id="popup-image">
-        <div class="popup-image__container popup__container">
+        <div class="popup-image__container">
           <button
             type="button"
             class="popup-image__btn-close popup__btn-close"
           ></button>
-          <img src="" alt="" class="popup-image__img" />
+          <img
+            src=""
+            alt="Картинка в попапе"
+            class="popup__image popup-image__img"
+          />
+          <figcaption class="popup__figcaption"></figcaption>
         </div>
       </div>
     </main>
@@ -75,6 +103,7 @@
     </footer>
     <template id="card-template">
       <li class="articles__item">
+        <button type="button" class="articles__icon-trush"></button>
         <img src="" alt="" class="articles__image" />
         <div class="articles__item-body">
           <h2 class="articles__title"></h2>
