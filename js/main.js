@@ -71,6 +71,13 @@ window.addEventListener("load", function () {
     popup.classList.add("popup_opend");
   }
 
+  function addInfoAtPopup(popup, img) {
+    imagePopupContent.src = img.src;
+    imagePopupText.textContent = img.alt;
+
+    openPopup(popup);
+  }
+
   function renderPopupEditorName(popup) {
     nameInput.value = personTitle.textContent;
     jobInput.value = personSubTitle.textContent;
@@ -108,13 +115,15 @@ window.addEventListener("load", function () {
     article.querySelector(".articles__title").textContent = item.name;
     if (!item.name) {
       article.querySelector(".articles__image").alt = "Картинка статьи";
+    } else {
+      article.querySelector(".articles__image").alt = item.name;
     }
     article.querySelector(".articles__image").src = item.link;
 
     article
       .querySelector(".articles__image")
       .addEventListener("click", function () {
-        openPopup(popupImage, this);
+        addInfoAtPopup(popupImage, this);
       });
     article
       .querySelector(".articles__icon-trush")
