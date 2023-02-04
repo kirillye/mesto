@@ -74,6 +74,7 @@ window.addEventListener("load", function () {
   function addInfoAtPopup(popup, img) {
     imagePopupContent.src = img.src;
     imagePopupText.textContent = img.alt;
+    imagePopupContent.alt = img.alt;
 
     openPopup(popup);
   }
@@ -94,12 +95,13 @@ window.addEventListener("load", function () {
 
   function addArticle(evt) {
     evt.preventDefault();
-    let titleArticle = articleTitle.value;
-    let imageSrc = articleLinkImage.value;
-    if (!imageSrc) {
-      imageSrc =
-        "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg";
-    }
+    const titleArticle = articleTitle.value;
+    const imageSrc = articleLinkImage.value;
+    // Упразднено из-за const :(
+    // if (!imageSrc) {
+    //   imageSrc =
+    //     "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg";
+    // }
     const newArticle = createArticle({
       name: titleArticle,
       link: imageSrc,
