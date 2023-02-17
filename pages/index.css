@@ -14,8 +14,8 @@
 @import url(../blocks/container/container.css);
 
 /* form */
-@import url(../blocks/forms/__item/form__item.css);
-@import url(../blocks/forms/__items/form__items.css);
+@import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__items/form__items.css);
 
 /* popup */
 @import url(../blocks/popup/popup.css);
