@@ -1,5 +1,6 @@
 .popup__btn {
   width: 100%;
+  border: 1px solid #000000;
   background: #000000;
   border-radius: 2px;
   color: #fff;
@@ -11,10 +12,11 @@
   margin-top: 48px;
   cursor: pointer;
   transition: all 0.25s linear;
-  border: none;
 }
 
 .popup__btn:hover {
+  opacity: 1;
+  color: #fff;
   background: rgba(0, 0, 0, 0.8);
 }
 

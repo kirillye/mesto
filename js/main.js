@@ -40,22 +40,24 @@ window.addEventListener("load", function () {
   // popup addArticle
   const popupAddArticle = document.querySelector("#popup-article");
   const btnAddArticle = document.querySelector(".person__add-article");
-  const formAtricle = popupAddArticle.querySelector(".popup__form");
-  const articleTitle = popupAddArticle.querySelector("#popup__article-title");
-  const articleLinkImage = popupAddArticle.querySelector(
-    "#popup__article-link-image"
-  );
-  const articleForm = popupAddArticle.querySelector(".popup__form");
+  const articleForm = document.forms.formArticle;
+  const articleTitle = articleForm.articleTitle;
+  const articleLinkImage = articleForm.linkImage;
+
+  // articleTitle.addEventListener("input", () => {
+  //   console.log(articleTitle.validity);
+  // });
 
   // popup editorNameUser
   const pupupEditorName = document.querySelector("#popup");
-  const formElement = pupupEditorName.querySelector(".popup__form");
-  const nameInput = pupupEditorName.querySelector(".popup__input_content_name");
-  const jobInput = pupupEditorName.querySelector(".popup__input_content_job");
+  const formUser = document.forms.formUser;
+  const nameInput = formUser.userName;
+  const jobInput = formUser.userJob;
   const personTitle = document.querySelector(".person__title");
   const personSubTitle = document.querySelector(".person__sub-title ");
   const btnEditInfoPerson = document.querySelector(".person__btn-edit");
 
+  // Кнопка закрытия
   const closeButtons = document.querySelectorAll(".popup__btn-close");
 
   closeButtons.forEach((button) => {
@@ -63,12 +65,36 @@ window.addEventListener("load", function () {
     button.addEventListener("click", () => closePopup(popup));
   });
 
+  enableValidation({
+    formPlace: "formArticle",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__btn",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_invalid",
+    errorClass: "popup__form-item-error",
+  });
+
+  enableValidation({
+    formPlace: "formUser",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__btn",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_invalid",
+    errorClass: "popup__form-item-error",
+  });
+
   function closePopup(popup) {
     popup.classList.remove("popup_opend");
+    const form = popup.querySelector("form");
+    formReset(form);
   }
 
   function openPopup(popup) {
     popup.classList.add("popup_opend");
+  }
+
+  function formReset(form) {
+    form.reset();
   }
 
   function addInfoAtPopup(popup, img) {
@@ -97,18 +123,13 @@ window.addEventListener("load", function () {
     evt.preventDefault();
     const titleArticle = articleTitle.value;
     const imageSrc = articleLinkImage.value;
-    // Упразднено из-за const :(
-    // if (!imageSrc) {
-    //   imageSrc =
-    //     "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg";
-    // }
     const newArticle = createArticle({
       name: titleArticle,
       link: imageSrc,
     });
 
     list.prepend(newArticle);
-    evt.target.reset();
+    formReset(evt.target);
     closePopup(popupAddArticle);
   }
 
@@ -153,7 +174,19 @@ window.addEventListener("load", function () {
     renderPopupEditorName(pupupEditorName)
   );
   btnAddArticle.addEventListener("click", () => openPopup(popupAddArticle));
-  formElement.addEventListener("submit", handleFormSubmit);
+  formUser.addEventListener("submit", handleFormSubmit);
   articleForm.addEventListener("submit", addArticle);
   renderCards();
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("popup")) {
+      const popup = e.target;
+      closePopup(popup);
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const popup = document.querySelector(".popup_opend");
+      closePopup(popup);
+    }
+  });
 });
