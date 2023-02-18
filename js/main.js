@@ -85,8 +85,6 @@ window.addEventListener("load", function () {
 
   function closePopup(popup) {
     popup.classList.remove("popup_opend");
-    const form = popup.querySelector("form");
-    formReset(form);
   }
 
   function openPopup(popup) {
@@ -114,13 +112,18 @@ window.addEventListener("load", function () {
 
   function handleFormSubmit(evt) {
     evt.preventDefault();
+    toggleFormSubmit(evt.target, { disable: true })
     personTitle.textContent = nameInput.value;
     personSubTitle.textContent = jobInput.value;
     closePopup(pupupEditorName);
   }
 
   function addArticle(evt) {
+    const form = evt.target.closest('.form');
+    const btn = form.querySelector('.popup__btn');
+
     evt.preventDefault();
+    toggleFormSubmit(btn, { disable: false })
     const titleArticle = articleTitle.value;
     const imageSrc = articleLinkImage.value;
     const newArticle = createArticle({
@@ -129,7 +132,7 @@ window.addEventListener("load", function () {
     });
 
     list.prepend(newArticle);
-    formReset(evt.target);
+    formReset(form);
     closePopup(popupAddArticle);
   }
 
@@ -184,8 +187,9 @@ window.addEventListener("load", function () {
     }
   });
   document.addEventListener("keydown", (e) => {
+    const popup = document.querySelector(".popup_opend");
     if (e.key === "Escape") {
-      const popup = document.querySelector(".popup_opend");
+      if(popup)
       closePopup(popup);
     }
   });
