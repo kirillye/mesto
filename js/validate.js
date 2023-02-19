@@ -1,41 +1,46 @@
 const enableValidation = (config) => {
-  const formPlace = document.forms[config.formPlace];
-  const formPlaceFields = Array.from(
-    formPlace.querySelectorAll(`${config.inputSelector}`)
-  );
-  const buttonSubmitFormPlace = formPlace.querySelector(
-    `${config.submitButtonSelector}`
-  );
-  console.log(buttonSubmitFormPlace);
-  formPlaceFields.forEach((itemField) => {
-    const errorTextContainerSelector = `.popup__form-item-error_field_${itemField.name}`;
-    const elementError = formPlace.querySelector(errorTextContainerSelector);
-    itemField.addEventListener("input", (e) => {
-      const field = e.target;
-      checkFormValidity(formPlaceFields, buttonSubmitFormPlace);
-      checkFieldValidity(itemField, elementError, config.inputErrorClass);
+  const forms = Array.from(document.querySelectorAll(".popup__form"));
+  forms.forEach((form) => {
+    const formPlaceFields = Array.from(
+      form.querySelectorAll(`${config.inputSelector}`)
+    );
+    const buttonSubmitFormPlace = form.querySelector(
+      `${config.submitButtonSelector}`
+    );
+    formPlaceFields.forEach((itemField) => {
+      const errorTextContainerSelector = `.popup__form-item-error_field_${itemField.name}`;
+      const elementError = document.querySelector(errorTextContainerSelector);
+      itemField.addEventListener("input", (e) => {
+        const field = e.target;
+        checkFormValidity(
+          formPlaceFields,
+          buttonSubmitFormPlace,
+          config.inactiveButtonClass
+        );
+        checkFieldValidity(itemField, elementError, config.inputErrorClass);
+      });
     });
   });
 };
 
 const focusHandler = ({ target }) => target.select();
 
-const toggleFormSubmit = (elementSubmit, { disable }) => {
+const toggleButtonState = (elementSubmit, { disable }, popupBtnInactive) => {
   if (disable) {
     elementSubmit.removeAttribute("disabled");
-    elementSubmit.classList.remove("popup__btn_disable");
+    elementSubmit.classList.remove(`${popupBtnInactive}`);
   } else {
     elementSubmit.setAttribute("disabled", "disabled");
-    elementSubmit.classList.add("popup__btn_disable");
+    elementSubmit.classList.add(`${popupBtnInactive}`);
   }
 };
 
-const checkFormValidity = (elementsFields, elementSubmit) => {
-  toggleFormSubmit(elementSubmit, { disable: true });
+const checkFormValidity = (elementsFields, elementSubmit, popupBtnInactive) => {
+  toggleButtonState(elementSubmit, { disable: true }, popupBtnInactive);
   const formIsValid = elementsFields.every(({ validity }) => validity.valid);
 
   if (!formIsValid) {
-    toggleFormSubmit(elementSubmit, { disable: false });
+    toggleButtonState(elementSubmit, { disable: false }, popupBtnInactive);
   }
 
   return formIsValid;
