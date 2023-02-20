@@ -133,7 +133,7 @@ window.addEventListener("load", function () {
 
   function handleProfileFormSubmit(evt) {
     evt.preventDefault();
-    toggleButtonState(evt.target, { disable: true });
+    toggleButtonState(evt.target, { disable: true }, "popup__btn_disable");
     personTitle.textContent = nameInput.value;
     personSubTitle.textContent = jobInput.value;
     closePopup(pupupEditorName);
@@ -144,7 +144,7 @@ window.addEventListener("load", function () {
     const btn = evt.submitter;
 
     evt.preventDefault();
-    toggleButtonState(btn, { disable: false });
+    toggleButtonState(btn, { disable: false }, "popup__btn_disable");
     const titleArticle = articleTitle.value;
     const imageSrc = articleLinkImage.value;
     const newArticle = createArticle({

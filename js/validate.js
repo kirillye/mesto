@@ -1,5 +1,5 @@
 const enableValidation = (config) => {
-  const forms = Array.from(document.querySelectorAll(".popup__form"));
+  const forms = Array.from(document.querySelectorAll(`${config.formSelector}`));
   forms.forEach((form) => {
     const formPlaceFields = Array.from(
       form.querySelectorAll(`${config.inputSelector}`)
