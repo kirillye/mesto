@@ -75,6 +75,10 @@ closeButtons.forEach((button) => {
 function closePopup(popup) {
   popup.classList.remove("popup_opend");
   document.removeEventListener("keydown", closeByEscape);
+  const form = popup.querySelector("form") || false;
+  if (form) {
+    resetForm(form);
+  }
 }
 
 function openPopup(popup) {
@@ -91,6 +95,12 @@ function closeByEscape(evt) {
 
 function resetForm(form) {
   form.reset();
+  form.querySelectorAll("span").forEach((item) => {
+    item.textContent = "";
+  });
+  form.querySelectorAll("input").forEach((item) => {
+    item.classList.remove("popup__input_invalid");
+  });
 }
 
 function openImagePopup(img) {
