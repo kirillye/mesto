@@ -1,32 +1,28 @@
+import { submitToDo } from "../main.js";
+
 export class FormValidator {
-  constructor(config, formName) {
+  constructor(config) {
     this._config = config;
-    this.form = document.forms[formName];
+    this.form = document.forms[this._config.formName];
+    this.buttonSubmitFormPlace = this.form.querySelector(
+      `${this._config.submitButtonSelector}`
+    );
+    this.formPlaceFields = Array.from(
+      this.form.querySelectorAll(`${this._config.inputSelector}`)
+    );
+    this.invalidFieldClass = this._config.inputErrorClass;
+    this.popupBtnInactive = this._config.inactiveButtonClass;
   }
 
   enableValidation() {
     this._setEventListeners();
-    const formPlaceFields = Array.from(
-      this.form.querySelectorAll(`${this._config.inputSelector}`)
-    );
-    const buttonSubmitFormPlace = this.form.querySelector(
-      `${this._config.submitButtonSelector}`
-    );
-    formPlaceFields.forEach((itemField) => {
+    this.formPlaceFields.forEach((itemField) => {
       const errorTextContainerSelector = `.popup__form-item-error_field_${itemField.name}`;
       const elementError = document.querySelector(errorTextContainerSelector);
       itemField.addEventListener("input", (e) => {
         const field = e.target;
-        this._checkFormValidity(
-          formPlaceFields,
-          buttonSubmitFormPlace,
-          this._config.inactiveButtonClass
-        );
-        this._checkFieldValidity(
-          itemField,
-          elementError,
-          this._config.inputErrorClass
-        );
+        this._checkFormValidity();
+        this._checkFieldValidity(itemField, elementError);
       });
     });
   }
@@ -35,26 +31,24 @@ export class FormValidator {
     target.select();
   }
 
-  _toggleButtonState(elementSubmit, { disable }, popupBtnInactive) {
+  _toggleButtonState({ disable }) {
     if (disable) {
-      elementSubmit.removeAttribute("disabled");
-      elementSubmit.classList.remove(`${popupBtnInactive}`);
+      this.buttonSubmitFormPlace.removeAttribute("disabled");
+      this.buttonSubmitFormPlace.classList.remove(`${this.popupBtnInactive}`);
     } else {
-      elementSubmit.setAttribute("disabled", "disabled");
-      elementSubmit.classList.add(`${popupBtnInactive}`);
+      this.buttonSubmitFormPlace.setAttribute("disabled", "disabled");
+      this.buttonSubmitFormPlace.classList.add(`${this.popupBtnInactive}`);
     }
   }
 
-  _checkFormValidity(elementsFields, elementSubmit, popupBtnInactive) {
-    this._toggleButtonState(elementSubmit, { disable: true }, popupBtnInactive);
-    const formIsValid = elementsFields.every(({ validity }) => validity.valid);
+  _checkFormValidity() {
+    this._toggleButtonState({ disable: true });
+    const formIsValid = this.formPlaceFields.every(
+      ({ validity }) => validity.valid
+    );
 
     if (!formIsValid) {
-      this._toggleButtonState(
-        elementSubmit,
-        { disable: false },
-        popupBtnInactive
-      );
+      this._toggleButtonState({ disable: false });
     }
 
     return formIsValid;
@@ -73,12 +67,12 @@ export class FormValidator {
     }
   }
 
-  _checkFieldValidity(elementField, elementError, invalidFieldClass) {
+  _checkFieldValidity(elementField, elementError) {
     const {
       validationMessage,
       validity: { valid },
     } = elementField;
-
+    const invalidFieldClass = this.invalidFieldClass;
     const params = {
       validationMessage,
       valid,
@@ -92,13 +86,9 @@ export class FormValidator {
   _setEventListeners() {
     this.form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._toggleButtonState(
-        evt.submitter,
-        { disable: false },
-        "popup__btn_disable"
-      );
+      this._toggleButtonState({ disable: false });
       const form = evt.target.closest(".popup__form");
-      this._config.submitToDo(form);
+      submitToDo(form);
     });
   }
 }

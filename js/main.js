@@ -108,55 +108,54 @@ function openProfilePopup(popup) {
   openPopup(popup);
 }
 
-function renderCards() {
-  const cards = initialCards.map((date) => {
-    const card = new Card(date, "#card-template");
-    const cardElement = card.generateCard();
-    return cardElement;
-  });
+function createCard(item) {
+  const card = new Card(item, "#card-template");
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
+function renderCards() {
+  const cards = initialCards.map((date) => createCard(date));
   list.append(...cards);
 }
 renderCards();
 
+function submitToDo(form) {
+  if (form.name == "formArticle") {
+    const card = createCard({
+      name: articleTitle.value,
+      link: articleLinkImage.value,
+    });
+    list.prepend(card);
+    resetForm(form);
+    closePopup(popupAddArticle);
+  } else if (form.name == "formUser") {
+    personTitle.textContent = nameInput.value;
+    personSubTitle.textContent = jobInput.value;
+    closePopup(pupupEditorName);
+  } else {
+    return;
+  }
+}
+
 function renderValidate() {
-  const formUser = new FormValidator(
-    {
-      inputSelector: ".popup__input",
-      submitButtonSelector: ".popup__btn",
-      inactiveButtonClass: "popup__btn_disable",
-      inputErrorClass: "popup__input_invalid",
-      errorClass: "popup__form-item-error",
-      submitToDo: () => {
-        personTitle.textContent = nameInput.value;
-        personSubTitle.textContent = jobInput.value;
-        closePopup(pupupEditorName);
-      },
-    },
-    "formUser"
-  );
+  const formUser = new FormValidator({
+    formName: "formUser",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__btn",
+    inactiveButtonClass: "popup__btn_disable",
+    inputErrorClass: "popup__input_invalid",
+    errorClass: "popup__form-item-error",
+  });
 
-  const formArticle = new FormValidator(
-    {
-      inputSelector: ".popup__input",
-      submitButtonSelector: ".popup__btn",
-      inactiveButtonClass: "popup__btn_disable",
-      inputErrorClass: "popup__input_invalid",
-      errorClass: "popup__form-item-error",
-      submitToDo: (form) => {
-        const card = new Card(
-          { name: articleTitle.value, link: articleLinkImage.value },
-          "#card-template"
-        );
-        const cardElement = card.generateCard();
-
-        list.prepend(cardElement);
-        resetForm(form);
-        closePopup(popupAddArticle);
-      },
-    },
-    "formArticle"
-  );
+  const formArticle = new FormValidator({
+    formName: "formArticle",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__btn",
+    inactiveButtonClass: "popup__btn_disable",
+    inputErrorClass: "popup__input_invalid",
+    errorClass: "popup__form-item-error",
+  });
   formUser.enableValidation();
   formArticle.enableValidation();
 }
@@ -167,4 +166,4 @@ btnEditInfoPerson.addEventListener("click", () =>
 );
 btnAddArticle.addEventListener("click", () => openPopup(popupAddArticle));
 
-export { openImagePopup };
+export { openImagePopup, submitToDo };
