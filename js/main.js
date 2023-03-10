@@ -97,6 +97,7 @@ function resetForm(form) {
 
 function openArcticlePopup() {
   formArticle.resetValidation();
+  formArticle.toggleButtonState({ disable: false });
   resetForm(articleForm);
   openPopup(popupAddArticle);
 }
