@@ -1,9 +1,7 @@
-import { submitToDo } from "../main.js";
-
 export class FormValidator {
-  constructor(config) {
+  constructor(config, formName) {
     this._config = config;
-    this.form = document.forms[this._config.formName];
+    this.form = document.forms[formName];
     this.buttonSubmitFormPlace = this.form.querySelector(
       `${this._config.submitButtonSelector}`
     );
@@ -15,7 +13,6 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._setEventListeners();
     this.formPlaceFields.forEach((itemField) => {
       const errorTextContainerSelector = `.popup__form-item-error_field_${itemField.name}`;
       const elementError = document.querySelector(errorTextContainerSelector);
@@ -31,7 +28,7 @@ export class FormValidator {
     target.select();
   }
 
-  _toggleButtonState({ disable }) {
+  toggleButtonState({ disable }) {
     if (disable) {
       this.buttonSubmitFormPlace.removeAttribute("disabled");
       this.buttonSubmitFormPlace.classList.remove(`${this.popupBtnInactive}`);
@@ -42,28 +39,35 @@ export class FormValidator {
   }
 
   _checkFormValidity() {
-    this._toggleButtonState({ disable: true });
+    this.toggleButtonState({ disable: true });
     const formIsValid = this.formPlaceFields.every(
       ({ validity }) => validity.valid
     );
 
     if (!formIsValid) {
-      this._toggleButtonState({ disable: false });
+      this.toggleButtonState({ disable: false });
     }
 
     return formIsValid;
   }
 
-  _setFieldError(
-    elementField,
-    elementError,
-    { validationMessage, valid, invalidFieldClass }
-  ) {
+  resetValidation() {
+    this.formPlaceFields.forEach((itemField) => {
+      const errorTextContainerSelector = `.popup__form-item-error_field_${itemField.name}`;
+      const elementError = document.querySelector(errorTextContainerSelector);
+      this._setFieldError(itemField, elementError, {
+        valid: true,
+      });
+      this._checkFormValidity();
+    });
+  }
+
+  _setFieldError(elementField, elementError, { validationMessage, valid }) {
     elementError.textContent = validationMessage;
     if (valid) {
-      elementField.classList.remove(invalidFieldClass);
+      elementField.classList.remove(this.invalidFieldClass);
     } else {
-      elementField.classList.add(invalidFieldClass);
+      elementField.classList.add(this.invalidFieldClass);
     }
   }
 
@@ -72,23 +76,21 @@ export class FormValidator {
       validationMessage,
       validity: { valid },
     } = elementField;
-    const invalidFieldClass = this.invalidFieldClass;
     const params = {
       validationMessage,
       valid,
-      invalidFieldClass,
     };
 
     this._setFieldError(elementField, elementError, params);
     return valid;
   }
 
-  _setEventListeners() {
-    this.form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._toggleButtonState({ disable: false });
-      const form = evt.target.closest(".popup__form");
-      submitToDo(form);
-    });
-  }
+  // _setEventListeners() {
+  //   this.form.addEventListener("submit", (evt) => {
+  //     evt.preventDefault();
+  //     this.toggleButtonState({ disable: false });
+  //     const form = evt.target.closest(".popup__form");
+  //     submitToDo(form);
+  //   });
+  // }
 }

@@ -52,12 +52,14 @@ const imagePopupText = popupImage.querySelector(".popup__figcaption");
 const popupAddArticle = document.querySelector("#popup-article");
 const btnAddArticle = document.querySelector(".person__add-article");
 const articleForm = document.forms.formArticle;
+let formArticle = "";
 const articleTitle = articleForm.articleTitle;
 const articleLinkImage = articleForm.linkImage;
 
 // popup editorNameUser
 const pupupEditorName = document.querySelector("#popup");
 const formUser = document.forms.formUser;
+let formPerson = "";
 const nameInput = formUser.userName;
 const jobInput = formUser.userJob;
 const personTitle = document.querySelector(".person__title");
@@ -75,10 +77,6 @@ closeButtons.forEach((button) => {
 function closePopup(popup) {
   popup.classList.remove("popup_opend");
   document.removeEventListener("keydown", closeByEscape);
-  const form = popup.querySelector("form") || false;
-  if (form) {
-    resetForm(form);
-  }
 }
 
 function openPopup(popup) {
@@ -95,12 +93,12 @@ function closeByEscape(evt) {
 
 function resetForm(form) {
   form.reset();
-  form.querySelectorAll("span").forEach((item) => {
-    item.textContent = "";
-  });
-  form.querySelectorAll("input").forEach((item) => {
-    item.classList.remove("popup__input_invalid");
-  });
+}
+
+function openArcticlePopup() {
+  formArticle.resetValidation();
+  resetForm(articleForm);
+  openPopup(popupAddArticle);
 }
 
 function openImagePopup(img) {
@@ -114,7 +112,7 @@ function openImagePopup(img) {
 function openProfilePopup(popup) {
   nameInput.value = personTitle.textContent;
   jobInput.value = personSubTitle.textContent;
-
+  formPerson.resetValidation();
   openPopup(popup);
 }
 
@@ -130,43 +128,52 @@ function renderCards() {
 }
 renderCards();
 
-function submitToDo(form) {
-  if (form.name == "formArticle") {
-    const card = createCard({
-      name: articleTitle.value,
-      link: articleLinkImage.value,
-    });
-    list.prepend(card);
-    resetForm(form);
-    closePopup(popupAddArticle);
-  } else if (form.name == "formUser") {
-    personTitle.textContent = nameInput.value;
-    personSubTitle.textContent = jobInput.value;
-    closePopup(pupupEditorName);
-  } else {
-    return;
-  }
+function submitFormDefauld(evt) {
+  evt.preventDefault();
+}
+
+function submitFormArticle(evt) {
+  submitFormDefauld(evt);
+  formArticle.toggleButtonState({ disable: false });
+  const card = createCard({
+    name: articleTitle.value,
+    link: articleLinkImage.value,
+  });
+  list.prepend(card);
+  closePopup(popupAddArticle);
+}
+
+function submitFormUserInfo(evt) {
+  submitFormDefauld(evt);
+  formPerson.toggleButtonState({ disable: false });
+  personTitle.textContent = nameInput.value;
+  personSubTitle.textContent = jobInput.value;
+  closePopup(pupupEditorName);
 }
 
 function renderValidate() {
-  const formUser = new FormValidator({
-    formName: "formUser",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__btn",
-    inactiveButtonClass: "popup__btn_disable",
-    inputErrorClass: "popup__input_invalid",
-    errorClass: "popup__form-item-error",
-  });
+  formPerson = new FormValidator(
+    {
+      inputSelector: ".popup__input",
+      submitButtonSelector: ".popup__btn",
+      inactiveButtonClass: "popup__btn_disable",
+      inputErrorClass: "popup__input_invalid",
+      errorClass: "popup__form-item-error",
+    },
+    "formUser"
+  );
 
-  const formArticle = new FormValidator({
-    formName: "formArticle",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__btn",
-    inactiveButtonClass: "popup__btn_disable",
-    inputErrorClass: "popup__input_invalid",
-    errorClass: "popup__form-item-error",
-  });
-  formUser.enableValidation();
+  formArticle = new FormValidator(
+    {
+      inputSelector: ".popup__input",
+      submitButtonSelector: ".popup__btn",
+      inactiveButtonClass: "popup__btn_disable",
+      inputErrorClass: "popup__input_invalid",
+      errorClass: "popup__form-item-error",
+    },
+    "formArticle"
+  );
+  formPerson.enableValidation();
   formArticle.enableValidation();
 }
 renderValidate();
@@ -174,6 +181,9 @@ renderValidate();
 btnEditInfoPerson.addEventListener("click", () =>
   openProfilePopup(pupupEditorName)
 );
-btnAddArticle.addEventListener("click", () => openPopup(popupAddArticle));
+btnAddArticle.addEventListener("click", () => openArcticlePopup());
 
-export { openImagePopup, submitToDo };
+articleForm.addEventListener("submit", submitFormArticle);
+formUser.addEventListener("submit", submitFormUserInfo);
+
+export { openImagePopup };
