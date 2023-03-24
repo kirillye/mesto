@@ -1,8 +1,8 @@
 export class Card {
-  constructor({ name, link }, handleCardClick) {
+  constructor({ name, link }, selector, handleCardClick) {
     this.name = name;
     this.link = link;
-    this.selector = "#card-template";
+    this.selector = selector;
     this.handleCardClick = handleCardClick;
 
     this._removeCard = this._removeCard.bind(this);
@@ -20,9 +20,10 @@ export class Card {
 
   generateCard() {
     this.article = this._getTemplate();
+    this._cardImage = this.article.querySelector(".articles__image");
 
-    this.article.querySelector(".articles__image").src = this.link;
-    this.article.querySelector(".articles__image").alt = this.name;
+    this._cardImage.src = this.link;
+    this._cardImage.alt = this.name;
     this.article.querySelector(".articles__title").textContent = this.name;
 
     this._setEventListeners();
@@ -31,9 +32,7 @@ export class Card {
   }
 
   _setEventListeners() {
-    this.article
-      .querySelector(".articles__image")
-      .addEventListener("click", this._openImageCard);
+    this._cardImage.addEventListener("click", this._openImageCard);
 
     this.article
       .querySelector(".articles__icon-trush")

@@ -26,8 +26,17 @@ export const initialCards = [
   },
 ];
 
+export const formDate = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__btn",
+  inactiveButtonClass: "popup__btn_disable",
+  inputErrorClass: "popup__input_invalid",
+  errorClass: "popup__form-item-error",
+};
+
 // List articles
-export const cardListSelector = document.querySelector(".articles__grid");
+export const cardListContainer = document.querySelector(".articles__grid");
+export const cardSelector = "#card-template";
 
 // popup addArticle
 export const btnAddArticle = document.querySelector(".person__add-article");
