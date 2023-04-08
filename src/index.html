@@ -18,17 +18,19 @@
       <section class="person container">
         <div class="person__wrapper">
           <div class="person__info">
-            <img
-              src="<%=require('./img/Avatar.png')%>"
-              alt="Аватар пользователя"
-              class="person__avatar"
-            />
+            <div class="person__image-cover">
+              <img
+                src="<%=require('./img/Avatar.png')%>"
+                alt="Аватар пользователя"
+                class="person__avatar"
+              />
+            </div>
             <div class="person__box">
               <div class="person__name-row">
-                <h1 class="person__title">Жак-Ив Кустo</h1>
+                <h1 class="person__title">Имя</h1>
                 <button type="button" class="person__btn-edit"></button>
               </div>
-              <h2 class="person__sub-title">Исследователь океана</h2>
+              <h2 class="person__sub-title">О себе</h2>
             </div>
           </div>
           <button type="button" class="person__add-article"></button>
@@ -127,6 +129,55 @@
           </form>
         </div>
       </div>
+      <div class="popup" id="popup-avatar">
+        <div class="popup__container">
+          <button type="button" class="popup__btn-close"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form
+            action="#"
+            class="popup__form form"
+            name="formUserAvatar"
+            novalidate
+          >
+            <fieldset class="form__items">
+              <div class="form__item">
+                <input
+                  name="userLinkImage"
+                  placeholder="Ссылка на картинку"
+                  type="url"
+                  class="popup__input"
+                  id="popup__user-link-avatar"
+                  required
+                />
+                <span
+                  class="popup__form-item-error popup__form-item-error_field_userLinkImage"
+                ></span>
+              </div>
+            </fieldset>
+            <button
+              type="submit"
+              class="popup__btn popup__btn_disable"
+              id="popup__btn-user"
+              disabled
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup" id="popup-confirm">
+        <div class="popup__container">
+          <button type="button" class="popup__btn-close"></button>
+          <h2 class="popup__title popup__title_padding_small">Вы уверены ?</h2>
+          <button
+            id="popup-btn-confirm"
+            type="button"
+            class="popup__btn popup__btn_padding_small"
+          >
+            Да
+          </button>
+        </div>
+      </div>
       <div class="popup-image popup" id="popup-image">
         <div class="popup-image__container">
           <button
@@ -155,7 +206,10 @@
         />
         <div class="articles__item-body">
           <h2 class="articles__title"></h2>
-          <button type="button" class="articles__icon-like"></button>
+          <div class="articles__likes-menu">
+            <button type="button" class="articles__icon-like"></button>
+            <span class="articles__likes"></span>
+          </div>
         </div>
       </li>
     </template>

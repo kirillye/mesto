@@ -47,3 +47,9 @@ export const jobInput = formUser.userJob;
 export const personTitle = document.querySelector(".person__title");
 export const personSubTitle = document.querySelector(".person__sub-title ");
 export const btnEditInfoPerson = document.querySelector(".person__btn-edit");
+
+// popup confir
+export const btnPopupConfirm = document.querySelector("#popup-btn-confirm");
+
+// popup userAvatar
+export const btnChangeAvatar = document.querySelector(".person__image-cover");

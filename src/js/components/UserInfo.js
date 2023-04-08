@@ -12,9 +12,12 @@ export class UserInfo {
     };
   }
 
+  setUserAvatar(src) {
+    this.avatar.src = src;
+  }
+
   setUserInfo(data) {
     this.name.textContent = data.userName;
     this.info.textContent = data.userJob;
-    this.avatar.src = data.src;
   }
 }

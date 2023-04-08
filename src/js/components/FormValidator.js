@@ -8,6 +8,7 @@ export class FormValidator {
     this.formPlaceFields = Array.from(
       this.form.querySelectorAll(`${this._config.inputSelector}`)
     );
+    this._btnTextDefault = this.buttonSubmitFormPlace.textContent;
     this.invalidFieldClass = this._config.inputErrorClass;
     this.popupBtnInactive = this._config.inactiveButtonClass;
   }
@@ -26,6 +27,14 @@ export class FormValidator {
 
   _focusHandler({ target }) {
     target.select();
+  }
+
+  sendingForm(sending) {
+    if (sending) {
+      this.buttonSubmitFormPlace.textContent = "Сохранение...";
+    } else {
+      this.buttonSubmitFormPlace.textContent = this._btnTextDefault;
+    }
   }
 
   toggleButtonState({ disable }) {

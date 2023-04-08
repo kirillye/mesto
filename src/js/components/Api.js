@@ -4,7 +4,7 @@ class Api {
     this.headers = config.headers;
   }
 
-  getTasks() {
+  getCards() {
     return fetch(`${this.url}cards`, {
       headers: this.headers,
     }).then((res) => {
@@ -28,17 +28,16 @@ class Api {
     });
   }
 
-  sendUserInfo(data) {
-    return fetch(`${this.url}users/me`, {
-      method: "PATCH",
+  sendCard({ articleTitle, linkImage }) {
+    return fetch(`${this.url}cards`, {
+      method: "POST",
       headers: this.headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.info,
+        name: articleTitle,
+        link: linkImage,
       }),
     }).then((res) => {
       if (res.status === 200) {
-        console.log(res);
         return res.json();
       }
 
@@ -46,15 +45,75 @@ class Api {
     });
   }
 
-  createTask(data) {
-    return fetch(this.url, {
-      method: "POST",
+  putLike(id) {
+    return fetch(`${this.url}cards/${id}/likes `, {
+      method: "PUT",
       headers: this.headers,
-      body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) {
+      if (res.status === 200) {
         return res.json();
       }
+
+      return Promise.reject("Произошла ошибка");
+    });
+  }
+
+  removeLike(id) {
+    return fetch(`${this.url}cards/${id}/likes `, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      }
+
+      return Promise.reject("Произошла ошибка");
+    });
+  }
+
+  removeCard(id) {
+    return fetch(`${this.url}cards/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      }
+
+      return Promise.reject("Произошла ошибка");
+    });
+  }
+
+  sendUserInfo(data) {
+    return fetch(`${this.url}users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: data.userName,
+        about: data.userJob,
+      }),
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      }
+
+      return Promise.reject("Произошла ошибка");
+    });
+  }
+
+  sendUserAvatar(avatar) {
+    return fetch(`${this.url}users/me/avatar`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: avatar,
+      }),
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      }
+
+      return Promise.reject("Произошла ошибка");
     });
   }
 }

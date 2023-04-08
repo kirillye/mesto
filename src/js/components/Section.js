@@ -1,6 +1,6 @@
 export class Section {
   constructor({ items, renderer }, cardListContainer) {
-    this._initialArray = items;
+    this._initialArray = items.reverse();
     this.renderer = renderer;
     this._container = cardListContainer;
   }
