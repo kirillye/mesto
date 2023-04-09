@@ -9,15 +9,17 @@ export class UserInfo {
     return {
       name: this.name.textContent,
       info: this.info.textContent,
+      userId: this.userId,
     };
   }
 
-  setUserAvatar(src) {
-    this.avatar.src = src;
+  setUserAvatar(data) {
+    this.avatar.src = data.avatar;
   }
 
   setUserInfo(data) {
-    this.name.textContent = data.userName;
-    this.info.textContent = data.userJob;
+    this.userId  = data._id;
+    this.name.textContent = data.name;
+    this.info.textContent = data.about;
   }
 }

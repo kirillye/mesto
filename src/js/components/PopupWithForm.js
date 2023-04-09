@@ -4,6 +4,8 @@ export class PopupWithForm extends Popup {
   constructor({ selector, callback, resetForm }) {
     super(selector);
     this.form = this.element.querySelector(".form");
+    this.btn = this.element.querySelector('button')
+    this.btnTextDefault = this.btn.textContent;
     this.callback = callback;
     this.resetForm = resetForm;
     this._inputList = this.form.querySelectorAll(".popup__input");
@@ -14,6 +16,14 @@ export class PopupWithForm extends Popup {
     this.form.addEventListener("submit", (evt) => {
       this.callback(evt);
     });
+  }
+
+  sending(done){
+    if(!done){
+      this.btn.textContent = 'Сохранение...'
+    } else {
+      this.btn.textContent = this.btnTextDefault
+    }
   }
 
   close() {

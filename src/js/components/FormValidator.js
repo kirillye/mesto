@@ -29,13 +29,13 @@ export class FormValidator {
     target.select();
   }
 
-  sendingForm(sending) {
-    if (sending) {
-      this.buttonSubmitFormPlace.textContent = "Сохранение...";
-    } else {
-      this.buttonSubmitFormPlace.textContent = this._btnTextDefault;
-    }
-  }
+  // sendingForm(sending) {
+  //   if (sending) {
+  //     this.buttonSubmitFormPlace.textContent = "Сохранение...";
+  //   } else {
+  //     this.buttonSubmitFormPlace.textContent = this._btnTextDefault;
+  //   }
+  // }
 
   toggleButtonState({ disable }) {
     if (disable) {

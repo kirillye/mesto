@@ -1,15 +1,20 @@
 export class Section {
-  constructor({ items, renderer }, cardListContainer) {
-    this._initialArray = items.reverse();
-    this.renderer = renderer;
-    this._container = cardListContainer;
+  constructor() {
+    // this._initialArray = items.reverse();
+    // this.renderer = renderer;
+    this._container = document.querySelector(".articles__grid");;
   }
 
-  renderItems() {
-    this._initialArray.forEach((item) => this.renderer(item));
+  renderItems(array, callBack) {
+    array.forEach((item) => {
+      callBack(item);
+      // this.addItem(cardElement);
+    });
   }
 
   addItem(elem) {
     this._container.prepend(elem);
   }
 }
+
+export const cardList = new Section();

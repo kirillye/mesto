@@ -3,16 +3,20 @@ class Api {
     this.url = config.url;
     this.headers = config.headers;
   }
+  
+  _getResponseData(res) {
+    // console.log(res.json())
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+  } 
 
   getCards() {
     return fetch(`${this.url}cards`, {
       headers: this.headers,
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -20,11 +24,7 @@ class Api {
     return fetch(`${this.url}users/me`, {
       headers: this.headers,
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -37,11 +37,7 @@ class Api {
         link: linkImage,
       }),
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -50,11 +46,7 @@ class Api {
       method: "PUT",
       headers: this.headers,
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -63,11 +55,7 @@ class Api {
       method: "DELETE",
       headers: this.headers,
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -76,11 +64,7 @@ class Api {
       method: "DELETE",
       headers: this.headers,
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -93,11 +77,7 @@ class Api {
         about: data.userJob,
       }),
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -109,11 +89,7 @@ class Api {
         avatar: avatar,
       }),
     }).then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 }

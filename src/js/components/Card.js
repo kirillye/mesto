@@ -21,7 +21,7 @@ export class Card {
     this.putLike = putLike;
     this.removeLike = removeLike;
 
-    this._removeCard = this._removeCard.bind(this);
+    this.removeCard = this.removeCard.bind(this);
     this._openImageCard = this._openImageCard.bind(this);
     this._toggleLikeStatus = this._toggleLikeStatus.bind(this);
   }
@@ -37,13 +37,14 @@ export class Card {
 
   checkOwner() {
     const user = this.checkUser();
-    return user.name == this.owner.name && user.info == this.owner.about;
+    // console.log(user)
+    return user.userId == this.owner._id;
   }
 
   checkLike() {
     const user = this.checkUser();
     const even = this.likeUsers.some((element) => {
-      return user.name == element.name && user.info == element.about;
+      return user.userId == element._id;
     });
     return even;
   }
@@ -99,16 +100,18 @@ export class Card {
   _toggleLikeStatus(evt) {
     if (!evt.target.classList.contains("articles__icon-like_active")) {
       this.putLike(this);
-      // this.putLike(this);
-      // this.changeSumLike(true);
     } else {
       this.removeLike(this);
-      // this.changeSumLike(false);
     }
-    evt.target.classList.toggle("articles__icon-like_active");
   }
 
-  _removeCard() {
+  toggleLikeColor(){
+    this.article
+        .querySelector(".articles__icon-like")
+        .classList.toggle("articles__icon-like_active");
+  }
+
+  removeCard() {
     this.article.remove();
   }
 }
