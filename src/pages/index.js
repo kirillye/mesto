@@ -42,22 +42,22 @@ const popupUserInfo = new PopupWithForm({
   selector: "#popup",
   callback: (evt) => {
     evt.preventDefault();
+    popupUserInfo.sending(false);
     const data = popupUserInfo.getInputValues();
     api
       .sendUserInfo(data)
       .then((res) => {
-        popupUserInfo.sending(false)
-        return res
+        return res;
       })
       .then((res) => {
         userInfo.setUserInfo(res);
         popupUserInfo.close();
       })
-      .finally(() => {
-        popupUserInfo.sending(true)
-      })
       .catch((err) => {
         console.log(err.message);
+      })
+      .finally(() => {
+        popupUserInfo.sending(true);
       });
   },
   resetForm: () => {
@@ -89,22 +89,22 @@ const popupAvatar = new PopupWithForm({
   selector: "#popup-avatar",
   callback: (evt) => {
     evt.preventDefault();
+    popupAvatar.sending(false);
     const data = popupAvatar.getInputValues();
     api
       .sendUserAvatar(data.userLinkImage)
       .then((res) => {
-        popupAvatar.sending(false)
-        return res
+        return res;
       })
       .then((res) => {
         userInfo.setUserAvatar(res);
         popupAvatar.close();
       })
-      .finally(() => {
-        popupAvatar.sending(true)
-      })
       .catch((err) => {
         console.log(err.message);
+      })
+      .finally(() => {
+        popupAvatar.sending(true);
       });
   },
   resetForm: () => {
@@ -117,23 +117,23 @@ const popupNewArticleForm = new PopupWithForm({
   selector: "#popup-article",
   callback: (evt) => {
     evt.preventDefault();
+    popupNewArticleForm.sending(false);
     const data = popupNewArticleForm.getInputValues();
     api
       .sendCard(data)
       .then((res) => {
-        popupNewArticleForm.sending(false)
         return res;
       })
       .then((res) => {
-        const cardElement = createCard(res)
+        const cardElement = createCard(res);
         cardList.addItem(cardElement);
         popupNewArticleForm.close();
       })
-      .finally(() => {
-        popupNewArticleForm.sending(true)
-      })
       .catch((err) => {
         console.log(err.message);
+      })
+      .finally(() => {
+        popupNewArticleForm.sending(true);
       });
   },
   resetForm: () => {
@@ -142,11 +142,13 @@ const popupNewArticleForm = new PopupWithForm({
 });
 popupNewArticleForm.setEventListeners();
 
-Promise.all([ //в Promise.all передаем массив промисов которые нужно выполнить
+Promise.all([
+  //в Promise.all передаем массив промисов которые нужно выполнить
   api.getUserInfo(),
-  api.getCards()
-]).then((values)=>{ 
-    const userConfigFormServer = values[0]
+  api.getCards(),
+])
+  .then((values) => {
+    const userConfigFormServer = values[0];
     const cardsConfigFormServer = values[1].reverse();
 
     // Отрисовка данных пользователя
@@ -155,21 +157,17 @@ Promise.all([ //в Promise.all передаем массив промисов к
 
     // Отрисовка карточек
 
-    cardList.renderItems(
-      cardsConfigFormServer,
-      (item) => {
-        const cardElement = createCard(item)
-        cardList.addItem(cardElement);
-      },
-    )
+    cardList.renderItems(cardsConfigFormServer, (item) => {
+      const cardElement = createCard(item);
+      cardList.addItem(cardElement);
+    });
   })
-  .catch((err)=>{
+  .catch((err) => {
     console.log(err);
-  }) 
+  });
 
-
-function createCard(item){
-  const card =  new Card(
+function createCard(item) {
+  const card = new Card(
     {
       name: item.name,
       link: item.link,
@@ -188,7 +186,7 @@ function createCard(item){
         .putLike(data.id)
         .then((res) => {
           data.changeSumLike(res.likes.length);
-          data.toggleLikeColor()
+          data.toggleLikeColor();
         })
         .catch((err) => {
           console.log(err.message);
@@ -199,19 +197,18 @@ function createCard(item){
         .removeLike(data.id)
         .then((res) => {
           data.changeSumLike(res.likes.length);
-          data.toggleLikeColor()
+          data.toggleLikeColor();
         })
         .catch((err) => {
           console.log(err.message);
         });
     },
     () => userInfo.getUserInfo()
-  )
+  );
 
   const cardElement = card.generateCard();
-  return cardElement
+  return cardElement;
 }
-
 
 btnEditInfoPerson.addEventListener("click", () => {
   popupUserInfo.open();

@@ -4,8 +4,7 @@ export class PopupConfirm extends Popup {
   constructor({ selector, callback }) {
     super(selector);
     this.callback = callback;
-    this.btn = document.querySelector('#popup-btn-confirm');
-
+    this.btn = this.element.querySelector("#popup-btn-confirm");
     this.delete = this.delete.bind(this);
   }
 
