@@ -47,9 +47,6 @@ const popupUserInfo = new PopupWithForm({
     api
       .sendUserInfo(data)
       .then((res) => {
-        return res;
-      })
-      .then((res) => {
         userInfo.setUserInfo(res);
         popupUserInfo.close();
       })
@@ -94,9 +91,6 @@ const popupAvatar = new PopupWithForm({
     api
       .sendUserAvatar(data.userLinkImage)
       .then((res) => {
-        return res;
-      })
-      .then((res) => {
         userInfo.setUserAvatar(res);
         popupAvatar.close();
       })
@@ -121,9 +115,6 @@ const popupNewArticleForm = new PopupWithForm({
     const data = popupNewArticleForm.getInputValues();
     api
       .sendCard(data)
-      .then((res) => {
-        return res;
-      })
       .then((res) => {
         const cardElement = createCard(res);
         cardList.addItem(cardElement);
